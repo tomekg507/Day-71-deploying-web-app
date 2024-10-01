@@ -31,6 +31,11 @@ def lead_user(user_id):
     return db.session.execute(db.select(User).where(User.id == user_id)).scalar()
 
 # CREATE DATABASE
+# How does all this work? SQLite is pre-installed for all Python projects,
+# but here we are using Postgres. The reason we can seamlessly switch from
+# SQLite to Postgres is because we are using the psycopg package in combination with S
+# QLAlchemy. The psycopg module is an incredibly popular PostgreSQL database adapter
+# for Python. (You can see the psycopg package listed in the requirements.txt.)
 class Base(DeclarativeBase):
     pass
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URI', 'sqlite:///posts.db')
